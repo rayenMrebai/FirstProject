@@ -29,11 +29,11 @@ final class StudentController extends AbstractController
     //     return new Response("Salut ".$var);
     // }
 
-    /*#[Route('/show', name: 'app_show')]
+    #[Route('/show', name: 'app_show')]
     public function show()
     {
         return $this->render('student/show.html.twig');
-    }*/
+    }
 
     #[Route('/goToIndex', name: 'app_goToIndex')]
     public function goToIndex() 

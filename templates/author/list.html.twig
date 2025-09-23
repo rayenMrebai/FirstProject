@@ -1,0 +1,39 @@
+<h1>free</h1>
+{{ x }}
+<br>
+
+{% for i in tabAuthors %}
+    {{ i.id }}
+    {{ i.username | upper  }}
+    {{ i.email }} <br>
+{% endfor %}
+
+
+number = {{tabAuthors | length}}
+{% set books = 0 %}
+{% for i in tabAuthors %}
+    {% set books = books + i.nb_books %}
+{% endfor %}
+{% if tabAuthors is empty%}
+<h4>the table is empty</h4>
+{% else %}
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Nbr_books</th>
+    </tr>
+    {% for i in tabAuthors %}
+    <tr>
+        <td>{{i.id}}</td>
+        <td>{{i.username}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.nb_books}}</td>
+    {% endfor %}
+</table>
+{% endif %}
+
+<p>Total number of books: {{ books }}</p>
+
+

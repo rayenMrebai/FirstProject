@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -23,8 +24,7 @@ final class AuthorController extends AbstractController
     /*#[Route('/list', name: 'list_author')]
     public function listAuthors(){
         $var = "3A28";
-        return $this->render("author/list.html.twig",
-        array('x'=>$var));
+        return $this->render("author/list.html.twig",array('x'=>$var));
     }*/
     #[Route('/list', name: 'list_author')]
     public function listAuthors(){
@@ -39,6 +39,18 @@ final class AuthorController extends AbstractController
         );
         return $this->render("author/list.html.twig",
         array('x'=>$var,'tabAuthors'=>$authors));
+    }
+    #[Route('/listAuthor', name: 'list_authors')]
+    public function list(AuthorRepository $repository)
+    {
+        $authors= $repository->findAll();
+        return $this->render("author/listb.html.twig",array("tab"=>$authors));
+    }
+    #[Route('/author/{id}', name: 'show_authors')]
+    public function show(AuthorRepository $repository, int $id):Response
+    {
+        $authors= $repository->find($id);
+        return $this->render("author/show.html.twig",["author"=>$authors]);
     }
     
 }

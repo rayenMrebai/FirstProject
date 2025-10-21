@@ -1,0 +1,18 @@
+<h1>tableau des produits et prix</h1>
+<table border="1">
+    <tr>
+        <th>TITLE</th>
+        <th>price</th>
+    </tr>
+    {% for i in tab %}
+    <tr>
+        <td>{{i.title | upper}}</td>
+        <td>{{i.price}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% set pr = 0 %}
+{% for i in tab %}
+    {% set pr = pr + 1 %}
+{% endfor %}
+<p>nombre de produit: {{ pr }}</p>

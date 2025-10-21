@@ -7,7 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Authour>
+ * @extends ServiceEntityRepository<Author>
  */
 class AuthorRepository extends ServiceEntityRepository
 {
@@ -40,4 +40,13 @@ class AuthorRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function listAuthorByEmail(): array
+    {
+        return $this->createQueryBuilder('a') // alias 'a' pour Author
+            ->select('a.email')                // on récupère seulement l’email
+            ->orderBy('a.username', 'DESC')    // tri par username descendant
+            ->getQuery()
+            ->getResult();
+    }
+
 }

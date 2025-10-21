@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche d'auteur{% endblock %}
+
+{% block body %}
+<h1>Rechercher les livres d'un auteur</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.username) }}
+    <button class="btn">Rechercher</button>
+{{ form_end(form) }}
+
+{% if books is not empty %}
+    <h2>Livres trouvés :</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} ({{ book.category }})</li>
+        {% endfor %}
+    </ul>
+{% elseif submitted %}
+    <p>Aucun livre trouvé pour cet auteur.</p>
+{% endif %}
+
+{% endblock %}
